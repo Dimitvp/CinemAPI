@@ -43,6 +43,7 @@
     <Compile Include="ICinemaRepository.cs" />
     <Compile Include="IMovieRepository.cs" />
     <Compile Include="IProjectionRepository.cs" />
+    <Compile Include="IReservatioRepository.cs" />
     <Compile Include="IRoomRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

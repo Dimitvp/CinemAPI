@@ -54,10 +54,23 @@
     <Compile Include="Migrations\201811040010411_AvailableSeatsCount.Designer.cs">
       <DependentUpon>201811040010411_AvailableSeatsCount.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811041544098_AddingReservationTable.cs" />
+    <Compile Include="Migrations\201811041544098_AddingReservationTable.Designer.cs">
+      <DependentUpon>201811041544098_AddingReservationTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811051250489_IsActiveColumnInReservationTable.cs" />
+    <Compile Include="Migrations\201811051250489_IsActiveColumnInReservationTable.Designer.cs">
+      <DependentUpon>201811051250489_IsActiveColumnInReservationTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201811052145219_ChangingNameOfColumnInReservationTable.cs" />
+    <Compile Include="Migrations\201811052145219_ChangingNameOfColumnInReservationTable.Designer.cs">
+      <DependentUpon>201811052145219_ChangingNameOfColumnInReservationTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelConfigurations\CinemaModelConfiguration.cs" />
     <Compile Include="IModelConfiguration.cs" />
     <Compile Include="ModelConfigurations\MovieModelConfiguration.cs" />
     <Compile Include="ModelConfigurations\ProjectionModelConfiguration.cs" />
+    <Compile Include="ModelConfigurations\ReservationModelConfiguration.cs" />
     <Compile Include="ModelConfigurations\RoomModelConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +87,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811040010411_AvailableSeatsCount.resx">
       <DependentUpon>201811040010411_AvailableSeatsCount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811041544098_AddingReservationTable.resx">
+      <DependentUpon>201811041544098_AddingReservationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811051250489_IsActiveColumnInReservationTable.resx">
+      <DependentUpon>201811051250489_IsActiveColumnInReservationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811052145219_ChangingNameOfColumnInReservationTable.resx">
+      <DependentUpon>201811052145219_ChangingNameOfColumnInReservationTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

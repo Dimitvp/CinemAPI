@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="INewProjection.cs" />
+    <Compile Include="INewReservation.cs" />
     <Compile Include="Models\NewProjectionSummary.cs" />
+    <Compile Include="Models\NewReservationSummery.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

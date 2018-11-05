@@ -47,6 +47,9 @@
     <Compile Include="Projection\IProjection.cs" />
     <Compile Include="Projection\IProjectionCreation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reservetion\IReservation.cs" />
+    <Compile Include="Reservetion\IReservationCreation.cs" />
+    <Compile Include="Reservetion\IReservationRequest.cs" />
     <Compile Include="Room\IRoom.cs" />
     <Compile Include="Room\IRoomCreation.cs" />
   </ItemGroup>

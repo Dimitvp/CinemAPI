@@ -6,7 +6,7 @@ namespace CinemAPI.Models
 {
     public class Projection : IProjection, IProjectionCreation
     {
-        private int availableSeatsCount;
+        //private int availableSeatsCount;
 
         public Projection()
         {

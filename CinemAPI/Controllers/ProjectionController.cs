@@ -36,7 +36,7 @@ namespace CinemAPI.Controllers
         }
 
         [HttpGet]
-        public IHttpActionResult SeatsCount(int id)
+        public IHttpActionResult SeatsCount(long id)
         {
             IProjection projection = projectionRepo.GetById(id);
 

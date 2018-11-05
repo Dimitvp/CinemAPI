@@ -51,6 +51,7 @@
     <Compile Include="MovieRepository.cs" />
     <Compile Include="ProjectionRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReservationRepository.cs" />
     <Compile Include="RoomRepository.cs" />
   </ItemGroup>
   <ItemGroup>

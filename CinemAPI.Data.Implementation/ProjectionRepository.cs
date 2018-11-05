@@ -23,7 +23,7 @@ namespace CinemAPI.Data.Implementation
                                                       x.StartDate == startDate);
         }
 
-        public IProjection GetById(int id)
+        public IProjection GetById(long id)
         {
             return db.Projections.FirstOrDefault(x => x.Id == id);
         }
