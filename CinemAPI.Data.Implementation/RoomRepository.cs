@@ -1,6 +1,7 @@
 ﻿using CinemAPI.Data.EF;
 using CinemAPI.Models;
 using CinemAPI.Models.Contracts.Room;
+using CinemAPI.Models.DTOs;
 using System.Linq;
 
 namespace CinemAPI.Data.Implementation
@@ -23,6 +24,18 @@ namespace CinemAPI.Data.Implementation
         public IRoom GetById(int id)
         {
             return db.Rooms.FirstOrDefault(x => x.Id == id);
+        }
+
+        public IRoom GetRowsAndSeatsPerRow(long id)
+        {
+            return db.Projections
+                .Where(p => p.Id == id)
+                .Select(x => new RoomDTO
+                {
+                    SeatsPerRow = x.Room.SeatsPerRow,
+                    Rows = x.Room.Rows
+                })
+                .Single();
         }
 
         public void Insert(IRoomCreation room)

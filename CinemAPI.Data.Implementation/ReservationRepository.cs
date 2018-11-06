@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using CinemAPI.Data.EF;
 using CinemAPI.Models;
 using CinemAPI.Models.Contracts.Reservetion;
@@ -15,10 +17,18 @@ namespace CinemAPI.Data.Implementation
             this.db = db;
         }
 
-        //public IReservation Get(long projectionId, string gui, DateTime projectionStartDate, string movieName, string cinemaName, int roomNum, int row, int column)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public IEnumerable<IReservation> GetRowsColsById(long id)
+        {
+            return db.Reservations
+                .Where(r => r.ProjectionId == id)
+                .SelectMany(x => new List<ReservationDTO>() {
+                    new ReservationDTO
+                    {
+                        Row = x.Row,
+                        Column = x.Column
+                    }})
+                .ToList();
+        }
 
         public IReservation GetRestInfo(long id)
         {
@@ -34,11 +44,32 @@ namespace CinemAPI.Data.Implementation
                 .Single();
         }
 
-        public void Insert(IReservationCreation reserv)
+        public IReservationTicket Insert(IReservationCreation reserv)
         {
-            Reservation newReserv = new Reservation(reserv.ProjectionId, reserv.Guid, reserv.ProjectionStartDate, reserv.MovieName, reserv.CinemaName, reserv.RoomNum, reserv.Row, reserv.Column, reserv.IsActive);
+            Reservation newReserv = new Reservation(
+                reserv.ProjectionId, 
+                reserv.Guid, 
+                reserv.ProjectionStartDate, 
+                reserv.MovieName, 
+                reserv.CinemaName, 
+                reserv.RoomNum, 
+                reserv.Row, 
+                reserv.Column, 
+                reserv.IsActive);
 
             db.Reservations.Add(newReserv);
+            db.Projections.Where(p => p.Id == reserv.ProjectionId).Select(p => p.AvailableSeatsCount - 1);
+            db.SaveChanges();
+
+            return newReserv;
+        }
+
+        public void CancelReservation(IReservationRequest reserv)
+        {
+            DateTime now = DateTime.UtcNow;
+
+            db.Reservations.Where(r => now > r.ProjectionStartDate.AddMinutes(-10)).Select(r => r.IsActive == false);
+            db.Projections.Where(p => p.Id == reserv.ProjectionId).Select(p => p.AvailableSeatsCount + 1);
             db.SaveChanges();
         }
     }

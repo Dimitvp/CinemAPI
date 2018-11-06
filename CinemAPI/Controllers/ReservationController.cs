@@ -27,7 +27,7 @@ namespace CinemAPI.Controllers
 
             if (summery.IsCreated)
             {
-                return Ok();
+                return Ok(summery.ReservationTicket);
             }
             else
             {

@@ -1,4 +1,6 @@
-﻿namespace CinemAPI.Domain.Contracts.Models
+﻿using CinemAPI.Models.Contracts.Reservetion;
+
+namespace CinemAPI.Domain.Contracts.Models
 {
     public class NewReservationSummery
     {
@@ -6,6 +8,13 @@
         {
             this.IsCreated = isCreated;
         }
+
+        public NewReservationSummery(bool isCreated, IReservationTicket reservationTicket)
+        {
+            this.IsCreated = isCreated;
+            this.ReservationTicket = reservationTicket;
+        }
+
 
         public NewReservationSummery(bool status, string msg)
             : this(status)
@@ -16,5 +25,8 @@
         public string Message { get; set; }
 
         public bool IsCreated { get; set; }
+
+        public IReservationTicket ReservationTicket { get; }
+
     }
 }

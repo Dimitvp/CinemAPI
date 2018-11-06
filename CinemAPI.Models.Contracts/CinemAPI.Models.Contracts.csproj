@@ -50,6 +50,7 @@
     <Compile Include="Reservetion\IReservation.cs" />
     <Compile Include="Reservetion\IReservationCreation.cs" />
     <Compile Include="Reservetion\IReservationRequest.cs" />
+    <Compile Include="Reservetion\IReservationTicket.cs" />
     <Compile Include="Room\IRoom.cs" />
     <Compile Include="Room\IRoomCreation.cs" />
   </ItemGroup>

@@ -3,7 +3,7 @@ using CinemAPI.Models.Contracts.Reservetion;
 
 namespace CinemAPI.Models
 {
-    public class Reservation : IReservation, IReservationCreation, IReservationRequest
+    public class Reservation : IReservation, IReservationCreation, IReservationRequest, IReservationTicket
     {
         public Reservation()
         {

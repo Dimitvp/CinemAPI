@@ -2,7 +2,6 @@
 using CinemAPI.Domain.Contracts;
 using CinemAPI.Domain.Contracts.Models;
 using CinemAPI.Models;
-using CinemAPI.Models.Contracts.Projection;
 using CinemAPI.Models.Contracts.Reservetion;
 using System;
 
@@ -28,18 +27,18 @@ namespace CinemAPI.Domain.NewReservation
 
             bool isActive = true;
 
-            reservationRepo.Insert(new Reservation(
+            IReservationTicket reserv = reservationRepo.Insert(new Reservation(
                 reservationReq.ProjectionId, 
                 newGuid, 
                 reservation.ProjectionStartDate, 
                 reservation.MovieName, 
                 reservation.CinemaName, 
                 reservation.RoomNum, 
-                reservation.Row, 
-                reservation.Column, 
+                reservationReq.Row, 
+                reservationReq.Column, 
                 isActive));
 
-            return new NewReservationSummery(true);
+            return new NewReservationSummery(true, reserv);
         }
     }
 }

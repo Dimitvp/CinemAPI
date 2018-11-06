@@ -50,6 +50,7 @@
     <Compile Include="NewReservation\NewReservationProjectionValidation.cs" />
     <Compile Include="NewReservation\NewReservationRoomValidation.cs" />
     <Compile Include="NewReservation\NewReservationSeatsValidation.cs" />
+    <Compile Include="NewReservation\NewReservationValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

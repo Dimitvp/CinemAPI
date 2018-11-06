@@ -21,6 +21,7 @@ namespace CinemAPI.IoCContainer
 
             //Reservation Containers
             container.Register<INewReservation, NewReservationCreation>();
+            container.RegisterDecorator<INewReservation, NewReservationValidation>();
             container.RegisterDecorator<INewReservation, NewReservationProjectionValidation>();
             container.RegisterDecorator<INewReservation, NewReservationSeatsValidation>();
             container.RegisterDecorator<INewReservation, NewReservationRoomValidation>();

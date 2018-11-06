@@ -4,8 +4,17 @@ using System;
 namespace CinemAPI.Models.DTOs
 {
     public class ReservationDTO : IReservation
-
     {
+        public ReservationDTO()
+        {
+        }
+
+        public ReservationDTO(int row, int column)
+        {
+            this.Row = row;
+            this.Column = column;
+        }
+
         public long Id { get; set; }
 
         public long ProjectionId { get; set; }

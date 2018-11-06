@@ -1,13 +1,16 @@
 ﻿using CinemAPI.Models.Contracts.Reservetion;
+using System.Collections.Generic;
 
 namespace CinemAPI.Data
 {
     public interface IReservatioRepository
     {
-        //IReservation Get(long projectionId, string gui, DateTime projectionStartDate, string movieName, string cinemaName, int roomNum, int row, int column);
+        IEnumerable<IReservation> GetRowsColsById(long id);
 
         IReservation GetRestInfo(long id);
 
-        void Insert(IReservationCreation reservation);
+        IReservationTicket Insert(IReservationCreation reservation);
+
+        void CancelReservation(IReservationRequest reserv);
     }
 }

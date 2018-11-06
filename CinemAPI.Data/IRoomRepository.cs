@@ -6,6 +6,8 @@ namespace CinemAPI.Data
     {
         IRoom GetById(int id);
 
+        IRoom GetRowsAndSeatsPerRow(long id);
+
         IRoom GetByCinemaAndNumber(int cinemaId, int number);
 
         void Insert(IRoomCreation room);
