@@ -120,7 +120,6 @@
     <Compile Include="Models\Input\Projection\ProjectionCreationModel.cs" />
     <Compile Include="Models\Input\Reservation\ReservationCreationModel.cs" />
     <Compile Include="Models\Input\Reservation\ReservationRequestModel.cs" />
-    <Compile Include="Models\Output\Reservation\ReservationTicketModel.cs" />
     <Compile Include="Models\Input\Room\RoomCreationModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

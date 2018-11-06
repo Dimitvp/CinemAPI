@@ -27,6 +27,5 @@ namespace CinemAPI.Domain.Contracts.Models
         public bool IsCreated { get; set; }
 
         public IReservationTicket ReservationTicket { get; }
-
     }
 }

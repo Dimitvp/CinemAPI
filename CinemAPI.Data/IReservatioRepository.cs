@@ -9,7 +9,7 @@ namespace CinemAPI.Data
 
         IReservation GetRestInfo(long id);
 
-        IReservationTicket Insert(IReservationCreation reservation);
+        IReservation Insert(IReservationCreation reservation);
 
         void CancelReservation(IReservationRequest reserv);
     }
