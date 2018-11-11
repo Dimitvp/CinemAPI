@@ -112,6 +112,7 @@
     <Compile Include="Controllers\ProjectionController.cs" />
     <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Controllers\RoomController.cs" />
+    <Compile Include="Controllers\TicketController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -121,6 +122,7 @@
     <Compile Include="Models\Input\Reservation\ReservationCreationModel.cs" />
     <Compile Include="Models\Input\Reservation\ReservationRequestModel.cs" />
     <Compile Include="Models\Input\Room\RoomCreationModel.cs" />
+    <Compile Include="Models\Input\Ticket\TicketRequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

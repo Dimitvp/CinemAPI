@@ -2,7 +2,6 @@
 using CinemAPI.Domain.Contracts.Models;
 using CinemAPI.Models;
 using CinemAPI.Models.Input.Reservation;
-using System;
 using System.Web.Http;
 
 namespace CinemAPI.Controllers

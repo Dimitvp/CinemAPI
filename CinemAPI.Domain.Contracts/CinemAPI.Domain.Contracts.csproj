@@ -42,8 +42,10 @@
   <ItemGroup>
     <Compile Include="INewProjection.cs" />
     <Compile Include="INewReservation.cs" />
+    <Compile Include="INewTicket.cs" />
     <Compile Include="Models\NewProjectionSummary.cs" />
     <Compile Include="Models\NewReservationSummery.cs" />
+    <Compile Include="Models\NewTicketSummery.cs" />
     <Compile Include="Models\ReservationTicketModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

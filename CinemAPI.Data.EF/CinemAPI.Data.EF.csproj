@@ -66,12 +66,17 @@
     <Compile Include="Migrations\201811052145219_ChangingNameOfColumnInReservationTable.Designer.cs">
       <DependentUpon>201811052145219_ChangingNameOfColumnInReservationTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811111038569_AddingNewTableForBoughtTickets.cs" />
+    <Compile Include="Migrations\201811111038569_AddingNewTableForBoughtTickets.Designer.cs">
+      <DependentUpon>201811111038569_AddingNewTableForBoughtTickets.cs</DependentUpon>
+    </Compile>
     <Compile Include="ModelConfigurations\CinemaModelConfiguration.cs" />
     <Compile Include="IModelConfiguration.cs" />
     <Compile Include="ModelConfigurations\MovieModelConfiguration.cs" />
     <Compile Include="ModelConfigurations\ProjectionModelConfiguration.cs" />
     <Compile Include="ModelConfigurations\ReservationModelConfiguration.cs" />
     <Compile Include="ModelConfigurations\RoomModelConfiguration.cs" />
+    <Compile Include="ModelConfigurations\TicketModelConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -96,6 +101,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201811052145219_ChangingNameOfColumnInReservationTable.resx">
       <DependentUpon>201811052145219_ChangingNameOfColumnInReservationTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201811111038569_AddingNewTableForBoughtTickets.resx">
+      <DependentUpon>201811111038569_AddingNewTableForBoughtTickets.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

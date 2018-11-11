@@ -53,6 +53,9 @@
     <Compile Include="Reservetion\IReservationTicket.cs" />
     <Compile Include="Room\IRoom.cs" />
     <Compile Include="Room\IRoomCreation.cs" />
+    <Compile Include="Ticket\ITicketRequest.cs" />
+    <Compile Include="Ticket\ITicket.cs" />
+    <Compile Include="Ticket\ITicketCreation.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

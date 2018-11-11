@@ -15,6 +15,7 @@ namespace CinemAPI.IoCContainer
             container.Register<IMovieRepository, MovieRepository>(Lifestyle.Scoped);
             container.Register<IProjectionRepository, ProjectionRepository>(Lifestyle.Scoped);
             container.Register<IReservatioRepository, ReservationRepository>(Lifestyle.Scoped);
+            container.Register<ITicketRepository, TicketRepository>(Lifestyle.Scoped);
 
             container.Register<CinemaDbContext>(Lifestyle.Scoped);
         }

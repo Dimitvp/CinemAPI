@@ -2,6 +2,7 @@
 using CinemAPI.Domain.Contracts;
 using CinemAPI.Domain.NewProjection;
 using CinemAPI.Domain.NewReservation;
+using CinemAPI.Domain.NewTicket;
 using SimpleInjector;
 using SimpleInjector.Packaging;
 
@@ -25,6 +26,10 @@ namespace CinemAPI.IoCContainer
             container.RegisterDecorator<INewReservation, NewReservationProjectionValidation>();
             container.RegisterDecorator<INewReservation, NewReservationSeatsValidation>();
             container.RegisterDecorator<INewReservation, NewReservationRoomValidation>();
+
+            //Ticket Containers
+            container.Register<INewTicket, NewTicketCreation>();
+            container.RegisterDecorator<INewTicket, NewTicketValidation>();
         }
     }
 }

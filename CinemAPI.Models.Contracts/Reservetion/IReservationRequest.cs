@@ -2,6 +2,8 @@
 {
     public interface IReservationRequest
     {
+        string Guid { get; set; }
+
         long ProjectionId { get; }
 
         int Row { get; }
