@@ -52,7 +52,8 @@
     <Compile Include="NewReservation\NewReservationSeatsValidation.cs" />
     <Compile Include="NewReservation\NewReservationValidation.cs" />
     <Compile Include="NewTicket\NewTicketCreation.cs" />
-    <Compile Include="NewTicket\NewTicketValidation.cs" />
+    <Compile Include="NewTicket\NewTicketProjectionValidation.cs" />
+    <Compile Include="NewTicket\NewTicketReservationValidation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

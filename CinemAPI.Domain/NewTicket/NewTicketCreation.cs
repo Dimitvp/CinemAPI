@@ -1,6 +1,7 @@
 ﻿using CinemAPI.Data;
 using CinemAPI.Domain.Contracts;
 using CinemAPI.Domain.Contracts.Models;
+using CinemAPI.Domain.Contracts.Models.Ticket;
 using CinemAPI.Models;
 using CinemAPI.Models.Contracts.Ticket;
 using System;
@@ -10,17 +11,20 @@ namespace CinemAPI.Domain.NewTicket
     public class NewTicketCreation : INewTicket
     {
         private readonly ITicketRepository ticketRepo;
-        private readonly IReservatioRepository reservationRepo;
 
-
+        public NewTicketCreation(ITicketRepository ticketRepo)
+        {
+            this.ticketRepo = ticketRepo;
+        }
 
         public NewTicketSummery New(ITicketRequest ticketReq)
         {
-            string newGuid = Guid.NewGuid().ToString("N");
+            string newGuid = Guid.NewGuid().ToString("N").Substring(0,5);
+            
             ITicket ticket = ticketRepo.GetRestInfo(ticketReq.ProjectionId);
 
             ITicket newTicket = ticketRepo.Insert(new Ticket(
-                ticket.ProjectionId,
+                ticketReq.ProjectionId,
                 newGuid,
                 ticket.ProjectionStartDate,
                 ticket.MovieName,
@@ -29,17 +33,18 @@ namespace CinemAPI.Domain.NewTicket
                 ticketReq.Row,
                 ticketReq.Column));
 
-            IReservationTicket reservetionTicket = new ReservationTicketModel(
+            //Creating the model for the Client
+            ITicketSuccess ticketSuccess = new TicketModel(
                 newGuid,
-                reservation.ProjectionStartDate,
-                reservation.MovieName,
-                reservation.CinemaName,
-                reservation.RoomNum,
-                reservationReq.Row,
-                reservationReq.Column
+                ticket.ProjectionStartDate,
+                ticket.MovieName,
+                ticket.CinemaName,
+                ticket.RoomNum,
+                ticketReq.Row,
+                ticketReq.Column
                 );
 
-            return new NewReservationSummery(true, reservetionTicket);
+            return new NewTicketSummery(true, ticketSuccess);
         }
     }
 }

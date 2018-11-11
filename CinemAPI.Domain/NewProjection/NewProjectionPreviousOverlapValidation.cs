@@ -26,9 +26,10 @@ namespace CinemAPI.Domain.NewProjection
         {
             IEnumerable<IProjection> movieProjectionsInRoom = projectRepo.GetActiveProjections(proj.RoomId);
 
-            IProjection previousProjection = movieProjectionsInRoom.Where(x => x.StartDate < proj.StartDate)
-                                                                        .OrderByDescending(x => x.StartDate)
-                                                                        .FirstOrDefault();
+            IProjection previousProjection = movieProjectionsInRoom
+                .Where(x => x.StartDate < proj.StartDate)
+                .OrderByDescending(x => x.StartDate)
+                .FirstOrDefault();
 
             if (previousProjection != null)
             {

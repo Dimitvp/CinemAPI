@@ -122,6 +122,7 @@
     <Compile Include="Models\Input\Reservation\ReservationCreationModel.cs" />
     <Compile Include="Models\Input\Reservation\ReservationRequestModel.cs" />
     <Compile Include="Models\Input\Room\RoomCreationModel.cs" />
+    <Compile Include="Models\Input\Ticket\TicketCreationModel.cs" />
     <Compile Include="Models\Input\Ticket\TicketRequestModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

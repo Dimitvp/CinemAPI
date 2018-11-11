@@ -5,6 +5,6 @@ namespace CinemAPI.Domain.Contracts
 {
     public interface INewTicket
     {
-        NewTicketSummery New(ITicketRequest Ticket);
+        NewTicketSummery New(ITicketRequest ticket);
     }
 }

@@ -18,15 +18,27 @@ namespace CinemAPI.Controllers
         [HttpPost]
         public IHttpActionResult Index(TicketRequestModel model)
         {
-            if (model.Guid != null)
-            {
-
-            }
-
             NewTicketSummery summery = newTicket.New(new Ticket(
                 model.ProjectionId,
                 model.Row,
                 model.Column
+                ));
+
+            if (summery.IsCreated)
+            {
+                return Ok(summery.Ticket);
+            }
+            else
+            {
+                return BadRequest(summery.Message);
+            }
+        }
+
+        [HttpPost]
+        public IHttpActionResult TicketWithReservation(TicketRequestModel model)
+        {
+            NewTicketSummery summery = newTicket.New(new Ticket(
+                model.ReservationGuid
                 ));
 
             if (summery.IsCreated)

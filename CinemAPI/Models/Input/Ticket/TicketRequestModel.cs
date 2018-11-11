@@ -2,7 +2,7 @@
 {
     public class TicketRequestModel
     {
-        public string Guid { get; set; }
+        public string ReservationGuid { get; set; }
 
         public long ProjectionId { get; set; }
 

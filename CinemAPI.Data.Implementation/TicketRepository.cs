@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using CinemAPI.Data.EF;
+using CinemAPI.Models;
 using CinemAPI.Models.Contracts.Ticket;
+using CinemAPI.Models.DTOs;
 
 namespace CinemAPI.Data.Implementation
 {
@@ -15,17 +18,39 @@ namespace CinemAPI.Data.Implementation
 
         public ITicket GetRestInfo(long id)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public IEnumerable<ITicket> GetRowsColsById(long id)
-        {
-            throw new System.NotImplementedException();
+            return db.Projections
+                .Where(p => p.Id == id)
+                .Select(s => new TicketDTO
+                {
+                    ProjectionStartDate = s.StartDate,
+                    MovieName = s.Movie.Name,
+                    RoomNum = s.Room.Number,
+                    CinemaName = s.Room.Cinema.Name
+                })
+                .Single();
         }
 
         public ITicket Insert(ITicketCreation ticket)
         {
-            throw new System.NotImplementedException();
+            Ticket newTicket = new Ticket(
+                ticket.ProjectionId,
+                ticket.Guid,
+                ticket.ProjectionStartDate,
+                ticket.MovieName,
+                ticket.CinemaName,
+                ticket.RoomNum,
+                ticket.Row,
+                ticket.Column
+                );
+            db.Tickets.Add(newTicket);
+
+            db.Projections
+                .Where(p => p.Id == ticket.ProjectionId)
+                .ToList()
+                .ForEach(x => x.AvailableSeatsCount--);
+
+            db.SaveChanges();
+            return newTicket;
         }
     }
 }

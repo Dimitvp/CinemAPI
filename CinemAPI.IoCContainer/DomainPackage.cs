@@ -29,7 +29,8 @@ namespace CinemAPI.IoCContainer
 
             //Ticket Containers
             container.Register<INewTicket, NewTicketCreation>();
-            container.RegisterDecorator<INewTicket, NewTicketValidation>();
+            container.RegisterDecorator<INewTicket, NewTicketProjectionValidation>();
+            container.RegisterDecorator<INewTicket, NewTicketReservationValidation>();
         }
     }
 }

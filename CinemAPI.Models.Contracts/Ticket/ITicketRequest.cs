@@ -4,6 +4,8 @@
     {
         long ProjectionId { get; }
 
+        string Guid { get; }
+
         int Row { get; }
 
         int Column { get; }

@@ -114,5 +114,12 @@ namespace CinemAPI.Data.Implementation
             
             db.SaveChanges();
         }
+
+        public IReservation GetReservationByGuid(string guid)
+        {
+            return db.Reservations
+                .Where(r => r.Guid == guid && r.IsActive == true)
+                .FirstOrDefault();
+        }
     }
 }

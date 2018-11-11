@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using CinemAPI.Models.Contracts.Reservetion;
 
 namespace CinemAPI.Models
@@ -35,6 +36,7 @@ namespace CinemAPI.Models
 
         public virtual Projection Projection { get; set; }
 
+        [Display(Name = "Unique Number:")]
         public string Guid { get; set; }
 
         public DateTime ProjectionStartDate { get; set; }

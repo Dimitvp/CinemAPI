@@ -23,7 +23,7 @@ namespace CinemAPI.Domain.NewReservation
 
         public NewReservationSummery New(IReservationRequest reservationReq)
         {
-            string newGuid = Guid.NewGuid().ToString("N");
+            string newGuid = Guid.NewGuid().ToString("N").Substring(0,5);
             IReservation reservation = reservationRepo.GetRestInfo(reservationReq.ProjectionId);
 
             bool isActive = true;

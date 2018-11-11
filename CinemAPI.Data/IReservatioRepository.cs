@@ -12,5 +12,7 @@ namespace CinemAPI.Data
         IReservation Insert(IReservationCreation reservation);
 
         void CancelReservation(IReservationRequest reserv);
+
+        IReservation GetReservationByGuid(string guid);
     }
 }

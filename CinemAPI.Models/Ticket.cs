@@ -1,10 +1,16 @@
 ﻿using System;
 using CinemAPI.Models.Contracts.Ticket;
+using System.ComponentModel.DataAnnotations;
 
 namespace CinemAPI.Models
 {
     public class Ticket : ITicket, ITicketCreation, ITicketRequest
     {
+        public Ticket(string guid)
+        {
+            this.Guid = guid;
+        }
+
         public Ticket(long projectionId, int row, int column)
         {
             this.ProjectionId = projectionId;
@@ -28,6 +34,7 @@ namespace CinemAPI.Models
 
         public long ProjectionId { get; set; }
 
+        [Display(Name ="Unique Number:")]
         public string Guid  { get; set; }
 
         public DateTime ProjectionStartDate { get; set; }

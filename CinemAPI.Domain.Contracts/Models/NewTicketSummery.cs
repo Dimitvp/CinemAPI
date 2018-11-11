@@ -9,7 +9,7 @@ namespace CinemAPI.Domain.Contracts.Models
             this.IsCreated = isCreated;
         }
 
-        public NewTicketSummery(bool isCreated, ITicket ticket)
+        public NewTicketSummery(bool isCreated, ITicketSuccess ticket)
         {
             this.IsCreated = isCreated;
             this.Ticket = ticket;
@@ -26,6 +26,6 @@ namespace CinemAPI.Domain.Contracts.Models
 
         public bool IsCreated { get; set; }
 
-        public ITicket Ticket { get; }
+        public ITicketSuccess Ticket { get; }
     }
 }
