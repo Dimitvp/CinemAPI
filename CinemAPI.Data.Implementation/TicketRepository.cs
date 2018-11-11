@@ -16,6 +16,19 @@ namespace CinemAPI.Data.Implementation
             this.db = db;
         }
 
+        public IEnumerable<ITicket> BoughtSeats(long id)
+        {
+            return db.Tickets.Where(t => t.ProjectionId == id)
+                .SelectMany(x => new List<TicketDTO>
+                {
+                    new TicketDTO
+                    {
+                        Row = x.Row,
+                        Column = x.Column
+                    }
+                });
+        }
+
         public ITicket GetRestInfo(long id)
         {
             return db.Projections

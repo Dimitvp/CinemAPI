@@ -17,7 +17,6 @@ namespace CinemAPI.Domain.NewTicket
         {
             this.reservationRepo = reservationRepo;
             this.newTicket = newTicket;
-
         }
 
         public NewTicketSummery New(ITicketRequest ticket)

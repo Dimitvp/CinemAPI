@@ -9,5 +9,6 @@ namespace CinemAPI.Data
 
         ITicket Insert(ITicketCreation ticket);
 
+        IEnumerable<ITicket> BoughtSeats(long id);
     }
 }
