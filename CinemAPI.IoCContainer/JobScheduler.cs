@@ -20,7 +20,7 @@ namespace CinemAPI.IoCContainer
 
             ITrigger trigger = TriggerBuilder.Create()
 
-                .WithIdentity("ReservationRepository ", "Reservation")
+                .WithIdentity("ReservationRepository")
 
                 .WithCronSchedule("0 0/1 * 1/1 * ? *")
 
