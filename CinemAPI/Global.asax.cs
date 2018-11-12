@@ -11,6 +11,10 @@ namespace CinemAPI
     {
         protected void Application_Start()
         {
+            JobScheduler jobScheduler = new JobScheduler();
+
+            jobScheduler.Start();
+
             Container container = new Container();
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
 
@@ -31,9 +35,7 @@ namespace CinemAPI
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
             GlobalConfiguration.Configure(WebApiConfig.Register);
 
-            JobScheduler jobScheduler = new JobScheduler();
-
-            jobScheduler.Start();
+           
         }
     }
 }

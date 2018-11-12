@@ -23,7 +23,6 @@ namespace CinemAPI.Data.Implementation
 
         Task IJob.Execute(IJobExecutionContext context)
         {
-            DateTime now = DateTime.UtcNow;
 
             List<Reservation> reservations = db.Reservations
                 .Where(r => DbFunctions.DiffMonths(r.ProjectionStartDate, now) == 0 &&
@@ -150,7 +149,7 @@ namespace CinemAPI.Data.Implementation
              Reservation reservation = db.Reservations
                 .Where(r => r.Guid == guid)
                 .FirstOrDefault();
-            //TODO - change the reservation status to false but before usage
+            //TODO - it changes the reservation status to false but before usage
             db.Reservations
                 .Where(r => r.Guid == guid)
                 .ToList()

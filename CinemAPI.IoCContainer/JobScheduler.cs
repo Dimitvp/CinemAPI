@@ -16,21 +16,20 @@ namespace CinemAPI.IoCContainer
 
             IJobDetail job = JobBuilder
                 .Create<ReservationRepository>()
+                .WithIdentity("Reservation")
+                .UsingJobData("jobSays", "Hello World!")
+                .UsingJobData("myFloatValue", 3.141f)
                 .Build();
 
-            ITrigger trigger = TriggerBuilder.Create()
-
-                .WithIdentity("ReservationRepository")
-
+            ITrigger trigger = TriggerBuilder
+                .Create()
+                .WithIdentity("Reservation")
                 .WithCronSchedule("0 0/1 * 1/1 * ? *")
-
-                .StartAt(DateTime.UtcNow)
-
+                .StartNow()
                 .WithPriority(1)
-
                 .Build();
 
-            await scheduler.ScheduleJob(job, trigger);
+          await scheduler.ScheduleJob(job, trigger);
 
         }
     }
