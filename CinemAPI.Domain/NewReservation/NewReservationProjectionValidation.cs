@@ -22,12 +22,12 @@ namespace CinemAPI.Domain.NewReservation
         {
             IProjection projection = projectionRepo.GetById(reservation.ProjectionId);
             var now = DateTime.UtcNow;
-            var tenMinBeforStart = projection.StartDate.AddMinutes(-10);
 
             if (projection == null)
             {
                 return new NewReservationSummery(false, $"Projection with id {reservation.ProjectionId} does not exist");
             }
+            var tenMinBeforStart = projection.StartDate.AddMinutes(-10);
 
             if (projection.StartDate <= now || now > tenMinBeforStart)
             {

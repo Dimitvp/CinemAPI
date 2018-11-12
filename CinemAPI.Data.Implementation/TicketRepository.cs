@@ -57,6 +57,8 @@ namespace CinemAPI.Data.Implementation
                 );
             db.Tickets.Add(newTicket);
 
+
+
             db.Projections
                 .Where(p => p.Id == ticket.ProjectionId)
                 .ToList()

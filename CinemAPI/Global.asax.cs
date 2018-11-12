@@ -30,6 +30,10 @@ namespace CinemAPI
 
             GlobalConfiguration.Configuration.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
             GlobalConfiguration.Configure(WebApiConfig.Register);
+
+            JobScheduler jobScheduler = new JobScheduler();
+
+            jobScheduler.Start();
         }
     }
 }

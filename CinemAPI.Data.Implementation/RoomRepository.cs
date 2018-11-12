@@ -28,7 +28,7 @@ namespace CinemAPI.Data.Implementation
 
         public IRoom GetRowsAndSeatsPerRow(long id)
         {
-            return db.Projections
+            return db.Projections              
                 .Where(p => p.Id == id)
                 .Select(x => new RoomDTO
                 {

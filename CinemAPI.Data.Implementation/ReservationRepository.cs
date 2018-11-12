@@ -3,14 +3,16 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Linq;
+using System.Threading.Tasks;
 using CinemAPI.Data.EF;
 using CinemAPI.Models;
 using CinemAPI.Models.Contracts.Reservetion;
 using CinemAPI.Models.DTOs;
+using Quartz;
 
 namespace CinemAPI.Data.Implementation
 {
-    public class ReservationRepository : IReservatioRepository
+    public class ReservationRepository : IReservatioRepository, IJob
     {
         private readonly CinemaDbContext db;
 
@@ -81,45 +83,83 @@ namespace CinemAPI.Data.Implementation
         public void CancelReservation(IReservationRequest reserv)
         {
             DateTime now = DateTime.UtcNow;
+            //TODO
+            //If DiffHours == 0 it wouldn`t take the next hour even if it is 10 min away. 
+            //With DiffMinutes we are taking minutes after the start of the projection which is not a problem if we delete the reservation!
+            List<Reservation> reservations = db.Reservations
+               .Where(r => DbFunctions.DiffMinutes(r.ProjectionStartDate, now) < 10 &&
+                           DbFunctions.DiffMonths(r.ProjectionStartDate, now) == 0 &&
+                           DbFunctions.DiffDays(r.ProjectionStartDate, now) == 0 &&
+                           DbFunctions.DiffHours(r.ProjectionStartDate, now) == 0)
+               .ToList();
+                //.ForEach(x => x.IsActive = false);
 
-             db.Reservations
-                .Where(r => DbFunctions.DiffMinutes(r.ProjectionStartDate, now) < 10 &&
-                            DbFunctions.DiffMonths(r.ProjectionStartDate, now) == 0 &&
-                            DbFunctions.DiffDays(r.ProjectionStartDate, now) == 0 &&
-                            DbFunctions.DiffHours(r.ProjectionStartDate, now) == 0)
-                .ToList()
-                .ForEach(x => x.IsActive = false);
+            //var expiredReservations = db.Reservations
+            //    .Where(r => r.IsActive == false)
+            //    .ToList()
+            //    .Count();
 
-            var expiredReservations = db.Reservations
-                .Where(r => r.IsActive == false)
-                .ToList()
-                .Count();
+            //if (expiredReservations > 0)
+            //{
+            //    var forDeletion = db.Reservations
+            //    .Where(r => r.IsActive == false)
+            //    .ToList();
 
-            if (expiredReservations > 0)
-            {
-                var forDeletion = db.Reservations
-                .Where(r => r.IsActive == false)
-                .ToList();
+            //    foreach (var res in forDeletion)
+            //    {
+            //        db.Reservations.Remove(res);
+            //    }
 
-                foreach (var res in forDeletion)
-                {
-                    db.Reservations.Remove(res);
-                }
-
-                db.Projections
-                .Where(p => p.Id == reserv.ProjectionId)
-                .ToList()
-                .ForEach(x => x.AvailableSeatsCount += expiredReservations);
-            }
+            //    db.Projections
+            //    .Where(p => p.Id == reserv.ProjectionId)
+            //    .ToList()
+            //    .ForEach(x => x.AvailableSeatsCount += expiredReservations);
+            //}
             
             db.SaveChanges();
         }
 
         public IReservation GetReservationByGuid(string guid)
         {
-            return db.Reservations
-                .Where(r => r.Guid == guid && r.IsActive == true)
+             Reservation reservation = db.Reservations
+                .Where(r => r.Guid == guid)
                 .FirstOrDefault();
+            //TODO
+            db.Reservations
+                .Where(r => r.Guid == guid)
+                .ToList()
+                .ForEach(x => x.IsActive = false);
+
+            db.SaveChanges();
+
+            return reservation;
+        }
+
+        Task IJob.Execute(IJobExecutionContext context)
+        {
+            using (db)
+            {
+                DateTime now = DateTime.UtcNow;
+                
+                List<Reservation> reservations = db.Reservations
+                   .Where(r => DbFunctions.DiffMonths(r.ProjectionStartDate, now) == 0 &&
+                               DbFunctions.DiffDays(r.ProjectionStartDate, now) == 0)
+                   .ToList();
+
+                foreach (var reserv in reservations)
+                {
+                    if (reserv.ProjectionStartDate.AddMinutes(-10) < now)
+                    {
+                        db.Reservations
+                            .Where(r => r.Id == reserv.Id)
+                            .ToList()
+                            .ForEach(r => r.IsActive = false);
+                    }
+                }
+
+                Task successMessage = new Task(() => Console.WriteLine("Some reservations deleted at {0}", DateTime.Now.ToString()));
+                return successMessage;
+            }
         }
     }
 }

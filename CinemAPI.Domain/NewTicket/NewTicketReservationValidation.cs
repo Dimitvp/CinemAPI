@@ -30,6 +30,11 @@ namespace CinemAPI.Domain.NewTicket
                     return new NewTicketSummery(false, $"There is someting wrong with this reservation code: {ticket.Guid}");
                 }
 
+                if (reservation.IsActive == false)
+                {
+                    return new NewTicketSummery(false, $"This reservation is canceled. It is either used or expired!");
+                }
+
                 return newTicket.New(new TicketWithReservationtModel(
                         reservation.ProjectionId,
                         reservation.Row,
